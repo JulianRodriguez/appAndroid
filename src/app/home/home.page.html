@@ -1,0 +1,22 @@
+<div class="home-wrapper">
+  <div class="header">
+    Últimos escaneos
+  </div>
+  <ion-content>
+    <div class="qr-list-wrapper" *ngIf="!scanning">
+      
+    </div>
+    <div class="qr-wrapper" *ngIf="scanning">
+      <div class="bars">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="footer">
+    <button class="scan-button" *ngIf="!scanning" (click)="scanQR()">Escanear QR</button>
+    <button class="scan-button" *ngIf="scanning" (click)="cancelQR()">Cancelar</button>
+  </div>
+</div>

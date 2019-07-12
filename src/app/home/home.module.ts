@@ -4,7 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { LoginPage } from './login.page';
+import { HomePage } from './home.page';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 
 @NgModule({
   imports: [
@@ -15,10 +16,11 @@ import { LoginPage } from './login.page';
     RouterModule.forChild([
       {
         path: '',
-        component: LoginPage
+        component: HomePage
       }
     ])
   ],
-  declarations: [LoginPage]
+  providers: [QRScanner],
+  declarations: [HomePage]
 })
-export class LoginPageModule {}
+export class HomePageModule {}

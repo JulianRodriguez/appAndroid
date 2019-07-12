@@ -1,0 +1,28 @@
+.login-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url('/assets/login-img.png') no-repeat top center/cover;
+
+  ion-content {
+    --background: transparent;
+  }
+
+  .login-form-wrapper {
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 100px;
+
+    .login-input {
+      width: 300px;
+      height: 40px;
+      margin: 10px auto;
+      border-bottom: 2px solid white;
+    }
+  }
+}

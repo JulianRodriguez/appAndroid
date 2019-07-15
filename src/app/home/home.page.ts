@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { AlertController, NavController } from '@ionic/angular';
+import { ProductProvider } from '../providers/product-provider/product.provider';
+import { NavParamsProvider } from '../providers/nav-params/nav-params.provider';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +14,11 @@ export class HomePage {
   public scanning = false;
 
   constructor(
-    private readonly qrScanner: QRScanner
+    private readonly qrScanner: QRScanner,
+    private readonly alertController: AlertController,
+    private readonly productProvider: ProductProvider,
+    private readonly navParamsProvider: NavParamsProvider,
+    private readonly navController: NavController
   ) {}
 
   public scanQR(): void {
@@ -21,25 +28,56 @@ export class HomePage {
           this.scanning = true;
           this.qrScanner.show();
           const scan = this.qrScanner.scan()
-            .subscribe((text: string) => {
+            .subscribe((qrCode: string) => {
               this.scanning = false;
               this.qrScanner.hide();
+              this.loadProduct(qrCode);
               scan.unsubscribe();
           });
         } else if (status.denied) {
-          // camera permission was permanently denied
-          // you must use QRScanner.openSettings() method to guide the user to the settings page
-          // then they can grant the permission from there
+          this.askPermissions();
         } else {
-          // permission was denied, but not permanently. You can ask for permission again at a later time.
+          this.askPermissions();
         }
       })
-      .catch((e: any) => alert(JSON.stringify(e)));
+      .catch((e: any) => this.askPermissions());
   }
 
   public cancelQR(): void {
     this.scanning = false;
     this.qrScanner.hide();
+  }
+
+  private async askPermissions() {
+    const alert = await this.alertController.create({
+      header: '¡Permiso denegado!',
+      message: 'Debe conceder permisos de acceso a la cámara para poder user el lector de códigos QR',
+      buttons: [
+        {
+          text: 'Rechazar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            alert.dismiss();
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.qrScanner.openSettings();
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
+  private loadProduct(code: string): void {
+    this.productProvider.loadProduct(code)
+      .subscribe((product: any) => {
+        this.navParamsProvider.params = product;
+        this.navController.navigateBack('/detail');
+      });
   }
 
 }

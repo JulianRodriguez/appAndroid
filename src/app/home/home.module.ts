@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { ProductProvider } from '../providers/product-provider/product.provider';
+import { NavParamsProvider } from '../providers/nav-params/nav-params.provider';
 
 @NgModule({
   imports: [
@@ -20,7 +22,11 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
       }
     ])
   ],
-  providers: [QRScanner],
+  providers: [
+    QRScanner,
+    ProductProvider,
+    NavParamsProvider
+  ],
   declarations: [HomePage]
 })
 export class HomePageModule {}

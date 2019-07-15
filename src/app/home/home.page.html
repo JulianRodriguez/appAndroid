@@ -3,8 +3,13 @@
     Últimos escaneos
   </div>
   <ion-content>
-    <div class="qr-list-wrapper" *ngIf="!scanning">
-      
+    <div class="qr-list-wrapper" *ngIf="!scanning && products">
+      <div class="product-element" *ngFor="let product of products">
+        <div class="product-image">
+          <img [src]="product.image">
+        </div>
+        <div class="product-title">{{ product.title }}</div>
+      </div>
     </div>
     <div class="qr-wrapper" *ngIf="scanning">
       <div class="bars">

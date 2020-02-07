@@ -7,18 +7,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiProvider {
 
-  private readonly baseUrl = '';
+  private readonly baseUrl = 'http://localhost:8080';
 
   constructor(
     private readonly httpProvider: HttpClient
   ) {}
 
-  public get(url: string, params?: any): Observable<any> {
+  public get(url: string, params: any, options?: any): Observable<any> {
     return this.httpProvider.get(`${this.baseUrl}/${url}`, params);
   }
 
-  public post(url: string, params?: any): Observable<any> {
-    return this.httpProvider.post(`${this.baseUrl}/${url}`, params);
+  public post(url: string, params: any, options?: any): Observable<any> {
+    return this.httpProvider.post(`${this.baseUrl}/${url}`, params, options);
   }
 
   public put(url: string, params?: any): Observable<any> {

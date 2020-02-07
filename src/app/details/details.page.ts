@@ -20,4 +20,7 @@ export class DetailsPage implements OnInit {
     this.product = this.navParamsProvider.params;
   }
 
+  public goBack(): void {
+    this.navController.navigateBack('/home');
+  }
 }

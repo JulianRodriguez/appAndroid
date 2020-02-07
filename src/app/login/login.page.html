@@ -1,17 +1,50 @@
-<div class="login-wrapper">
-  <ion-content>
-    <div class="login-form-wrapper" [formGroup]="loginForm">
-      <div class="login-input">
-        <ion-icon name="person"></ion-icon>
-        <input type="text" placeholder="Correo" formControlName="user">
-      </div>
-      <div class="login-input">
-        <ion-icon name="lock"></ion-icon>
-        <input type="text" placeholder="Contraseña" formControlName="password">
-      </div>
-      <button class="login-button" [disabled]="loginForm.invalid" (click)="doLogin()">
-        ACCEDER
-      </button>
+
+    <div class="login-wrapper">
+      <ion-content>
+        <div class="login-form-wrapper" [formGroup]="loginForm">
+          <!-- <div *ngIf="showError" class="my-notify-error">
+            Alias y/o Contraseña Incorrectos
+          </div> -->
+          <div class="alert" *ngIf="showError" >
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              Alias y/o Contraseña Incorrectos.
+            </div>
+          <div class="login-input">
+            <ion-icon name="person"></ion-icon>
+            <ion-item class="login-input"> 
+              <ion-label position="floating">Alias</ion-label>
+                <ion-input type="text" formControlName="user"></ion-input>
+            </ion-item>      
+          </div>
+          <div class="login-input">
+            <ion-icon name="lock"></ion-icon>
+            <ion-item class="login-input">
+              <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>     
+          </div>
+          <div class="divider"></div>
+          <button class="login-button" [disabled]="loginForm.invalid" (click)="doLogin()">
+            ACCEDER
+          </button>
+          <button class="login-button" (click)="register()">
+            ¿Aún no tienes cuenta?
+          </button>
+        </div>
+      </ion-content>
     </div>
-  </ion-content>
-</div>
+
+
+<script>
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+    document.write(1);
+    
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+      }
+    }
+    </script>

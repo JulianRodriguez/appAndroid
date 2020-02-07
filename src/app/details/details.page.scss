@@ -2,4 +2,50 @@
   width: 100%;
   height: 100%;
   background: white;
+
+  .header {
+    height: 50px;
+    text-align: center;
+    line-height: 45px;
+    font-weight: bold;
+    background: white;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #0079c8;
+
+    ion-icon {
+      font-size: 25px;
+    }
+
+    .header-title {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      line-height: 45px;
+      color: #0079c8;
+    }
+  }
+
+  img {
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .title {
+    padding: 0 10px;
+    font-size: 18px;
+    color: #0079c8;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    padding: 0 10px;
+    font-size: 14px;
+  }
 }

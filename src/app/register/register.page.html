@@ -1,0 +1,67 @@
+<!-- <div class="register-wrapper">
+    <ion-content>
+    <div class="login-form-wrapper">
+        Registro
+        <ion-icon class="logout-icon" name="arrow-round-back" (click)="goBack()"></ion-icon>
+    </div>
+    <ion-content>
+        <div [formGroup]="registerForm">
+            <input type="text" formControlName="email" placeholder="Email">
+            <input type="text" formControlName="alias" placeholder="Alias">
+            <input type="password" formControlName="password" placeholder="Contraseña">
+        </div>
+        <button type="button" (click)="doRegister()">REGISTRARSE</button>
+    </ion-content>
+</div> -->
+
+
+<div class="register-wrapper">
+        <ion-content>
+          <!-- <div class="login-form-wrapper">
+               Registro
+              <ion-icon class="logout-icon" name="arrow-round-back" (click)="goBack()"></ion-icon>
+          </div> -->
+
+          <div class="register-form-wrapper" [formGroup]="registerForm">
+            <div class="form-group">
+              <ion-icon name="person"></ion-icon>
+              <input type="text" placeholder="Alias" formControlName="alias">
+            </div>
+            <div *ngIf="registerForm.get('alias').errors && registerForm.get('alias').touched" class="alert alert-danger">
+                    <span class="texto">Tamaño minimo 6.</span> 
+              </div>
+              <div *ngIf="userExists" class="alert alert-danger">
+                  <span class="texto">Alias en uso</span> 
+            </div>
+            <!-- <div class="register-input">
+                <ion-icon name="mail"></ion-icon>
+                <input type="text" placeholder="Email" formControlName="email">
+                <span *ngIf="registerForm.get('email').errors && registerForm.get('email').touched" style="color:red">Ingrese un email válido</span>
+            </div> -->
+            <div class="form-group">
+                    <ion-icon name="mail"></ion-icon>
+                    <input class="form-control" formControlName="email" type="text" placeholder="Email">
+            </div>
+                <div *ngIf="registerForm.get('email').errors && registerForm.get('email').touched" class="alert alert-danger">
+                    <span class="texto">Formato no valido.</span> 
+                </div>
+                <div *ngIf="emailExists" class="alert alert-danger">
+                    <span class="texto">Correo en uso</span> 
+              </div>
+            <div class="form-group">
+              <ion-icon name="lock"></ion-icon>
+              <input type="password" placeholder="Contraseña" formControlName="password">
+            </div>
+              <div *ngIf="registerForm.get('password').errors && registerForm.get('password').touched" class="alert alert-danger">
+                      <span class="texto">Tamaño minimo 6.</span> 
+                </div>
+            <div class="divider"></div>
+            <button class="register-button" [disabled]="registerForm.invalid || userExists || emailExists" (click)="doregister()">
+              REGISTRARSE
+            </button>
+            <button class="register-button" (click)="goBack()">
+              CANCELAR
+            </button>
+          </div>
+        </ion-content>
+      </div>

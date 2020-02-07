@@ -55,6 +55,15 @@ export class HomePage implements OnInit {
     this.qrScanner.hide();
   }
 
+  public openDetail(product: any): void {
+    this.navParamsProvider.params = product;
+    this.navController.navigateForward('/details');
+  }
+
+  public logout(): void {
+    this.navController.navigateRoot('login');
+  }
+
   private async askPermissions() {
     const alert = await this.alertController.create({
       header: '¡Permiso denegado!',

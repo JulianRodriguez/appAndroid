@@ -11,6 +11,7 @@ import { NavController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   public loginForm: FormGroup;
+  public showError = false;
 
   constructor(
     private readonly loginProvider: LoginProvider,
@@ -24,18 +25,31 @@ export class LoginPage implements OnInit {
   public doLogin(): void {
     const user = this.loginForm.value.user;
     const password = this.loginForm.value.password;
+    this.showError = false;
     this.loginProvider.doLogin(user, password)
       .subscribe((resp) => {
+        console.log(resp);
         if (resp) {
           this.navController.navigateRoot('/home');
         }
+      },() => {
+        console.log('ERROR');
+        this.showError = true;
       });
+  }
+
+  public cerrar(): void{
+    console.log('en la funcion');
+  }
+
+  public register(): void {
+    this.navController.navigateForward('register');
   }
 
   private initForm(): void {
     this.loginForm = new FormGroup({
-      user: new FormControl('email@email.com', [Validators.required, Validators.email]),
-      password: new FormControl('aaaaa', [Validators.required])
+      user: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     });
   }
 

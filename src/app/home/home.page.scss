@@ -9,6 +9,15 @@
     color: #0079c8;
     font-weight: bold;
     background: white;
+    position: relative;
+
+    .logout-icon {
+      font-size: 30px;
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      color: red;
+    }
   }
 
   ion-content {
@@ -17,12 +26,15 @@
     .qr-list-wrapper {
       background: white;
       height: 100%;
+      top: -10px;
+      position: relative;
+      padding-top: 15px;
 
       .product-element {
         width: 90%;
         margin: 10px auto;
         position: relative;
-        height: 70px;
+        height: 65px;
         overflow: hidden;
         border: 1px solid rgb(233, 233, 233);
         border-radius: 7px;
@@ -41,11 +53,10 @@
         }
 
         .product-title {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 80px;
-          line-height: 70px;
+          height: 65px;
+          display: flex;
+          align-items: center;
+          padding-left: 85px;
         }
       }
     }

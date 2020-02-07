@@ -1,14 +1,17 @@
 <div class="home-wrapper">
   <div class="header">
     Últimos escaneos
+    <ion-icon class="logout-icon" name="log-out" (click)="logout()"></ion-icon>
   </div>
   <ion-content>
     <div class="qr-list-wrapper" *ngIf="!scanning && products">
-      <div class="product-element" *ngFor="let product of products">
+      <div class="product-element" *ngFor="let product of products" (click)="openDetail(product)">
         <div class="product-image">
           <img [src]="product.image">
         </div>
-        <div class="product-title">{{ product.title }}</div>
+        <div class="product-title">
+          <div>{{ product.title }}</div>
+        </div>
       </div>
     </div>
     <div class="qr-wrapper" *ngIf="scanning">

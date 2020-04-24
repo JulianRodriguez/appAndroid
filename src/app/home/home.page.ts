@@ -39,7 +39,9 @@ export class HomePage implements OnInit {
               this.scanning = false;
               this.qrScanner.hide();
               this.loadProduct(qrCode);
-              scan.unsubscribe();
+              if (scan) {
+                scan.unsubscribe();
+              }
           });
         } else if (status.denied) {
           this.askPermissions();

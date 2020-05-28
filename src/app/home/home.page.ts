@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import { AlertController, NavController } from '@ionic/angular';
 import { ProductProvider } from '../providers/product-provider/product.provider';
@@ -21,7 +21,8 @@ export class HomePage implements OnInit {
     private readonly productProvider: ProductProvider,
     private readonly navParamsProvider: NavParamsProvider,
     private readonly navController: NavController,
-    private readonly localStorageProvider: LocalStorageProvider
+    private readonly localStorageProvider: LocalStorageProvider,
+    private readonly ngZone: NgZone
   ) {}
 
   ngOnInit() {
@@ -36,10 +37,11 @@ export class HomePage implements OnInit {
           this.qrScanner.show();
           const scan = this.qrScanner.scan()
             .subscribe((qrCode: string) => {
-              console.log(qrCode);
-              this.scanning = false;
-              this.qrScanner.hide();
-              this.loadProduct(qrCode);
+              this.ngZone.run(() => {
+                this.scanning = false;
+                this.qrScanner.hide();
+                this.loadProduct(qrCode);
+              });
               if (scan) {
                 scan.unsubscribe();
               }

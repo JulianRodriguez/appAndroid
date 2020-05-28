@@ -10,7 +10,7 @@ export class ProductProvider {
   constructor(private readonly api: ApiProvider) { }
 
   public loadProduct(id): Observable<any> {
-    return this.api.get('product', {id});
+    return this.api.get(`product/${id}`);
   }
 
 }

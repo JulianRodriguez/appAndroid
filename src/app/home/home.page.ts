@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
           this.qrScanner.show();
           const scan = this.qrScanner.scan()
             .subscribe((qrCode: string) => {
+              console.log(qrCode);
               this.scanning = false;
               this.qrScanner.hide();
               this.loadProduct(qrCode);

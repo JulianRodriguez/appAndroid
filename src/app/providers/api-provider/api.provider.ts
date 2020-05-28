@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiProvider {
 
-  private readonly baseUrl = 'http://localhost:8080';
+  private readonly baseUrl = 'https://stark-earth-76126.herokuapp.com';
 
   constructor(
     private readonly httpProvider: HttpClient

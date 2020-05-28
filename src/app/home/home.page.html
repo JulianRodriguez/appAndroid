@@ -4,13 +4,15 @@
     <ion-icon class="logout-icon" name="log-out" (click)="logout()"></ion-icon>
   </div>
   <ion-content>
-    <div class="qr-list-wrapper" *ngIf="!scanning && products">
-      <div class="product-element" *ngFor="let product of products" (click)="openDetail(product)">
-        <div class="product-image">
-          <img [src]="product.image">
-        </div>
-        <div class="product-title">
-          <div>{{ product.title }}</div>
+    <div class="qr-list-wrapper" *ngIf="!scanning">
+      <div *ngIf="products">
+        <div class="product-element" *ngFor="let product of products" (click)="openDetail(product)">
+          <div class="product-image">
+            <img [src]="product.image">
+          </div>
+          <div class="product-title">
+            <div>{{ product.title }}</div>
+          </div>
         </div>
       </div>
     </div>

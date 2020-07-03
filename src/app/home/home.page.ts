@@ -10,7 +10,7 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage.p
   templateUrl: 'home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   public scanning = false;
   public products: any[];
@@ -24,8 +24,13 @@ export class HomePage implements OnInit {
     private readonly localStorageProvider: LocalStorageProvider
   ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.products = this.localStorageProvider.getItem('products');
+  }
+
+  public checkImage(image): string {
+    console.log(image ? image : './assets/img/no-imagen.jpg');
+    return image ? image : './assets/img/no-imagen.jpg';
   }
 
   public scanQR(): void {

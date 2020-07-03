@@ -13,7 +13,7 @@ export class ApiProvider {
     private readonly httpProvider: HttpClient
   ) {}
 
-  public get(url: string, params: any, options?: any): Observable<any> {
+  public get(url: string, params?: any, options?: any): Observable<any> {
     return this.httpProvider.get(`${this.baseUrl}/${url}`, params);
   }
 
